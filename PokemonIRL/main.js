@@ -57,9 +57,11 @@ document.getElementById('enter-button').addEventListener('click', () => {
 
         // Add click event listeners to each listed Pokémon
         const listedPokemons = resultsDiv.querySelectorAll('.listed-pokemon');
+        
         console.log(listedPokemons)
         listedPokemons.forEach(pokemonElement => {
             pokemonElement.addEventListener('click', () => {
+                console.log("what")
                 const pokemon = pokemonElement.textContent.toLowerCase()
                 const url = `https://pokeapi.co/api/v2/pokemon/${pokemon}`
 

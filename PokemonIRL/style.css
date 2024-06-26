@@ -5,11 +5,13 @@ body {
   margin: 0;
   padding: 0;
 }
+
 .container {
   width: 80%;
   margin: 0 auto;
   padding: 20px;
 }
+
 .menu {
   display: flex;
   justify-content: space-between;
@@ -17,7 +19,9 @@ body {
   color: rgb(112, 112, 112);
   padding: 10px 20px;
 }
-.menu button, .menu input {
+
+.menu button,
+.menu input {
   background-color: #949494;
   color: #333;
   border: none;
@@ -25,24 +29,30 @@ body {
   margin: 0 5px;
   border-radius: 4px;
 }
+
 h1 {
   text-align: center;
   font-size: 3em;
   color: #333;
   margin-top: 20px;
 }
-.about-section, .form-section, .footer {
+
+.about-section,
+.form-section,
+.footer {
   background-color: rgb(110, 110, 110);
   padding: 20px;
   margin: 20px 0;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
 .buttons {
   display: flex;
   justify-content: center;
   margin: 20px 0;
 }
+
 .buttons button {
   background-color: #808080;
   color: rgb(95, 95, 95);
@@ -52,16 +62,22 @@ h1 {
   border-radius: 4px;
   cursor: pointer;
 }
+
 .buttons button:hover {
   background-color: #555;
 }
-.form-section label, .form-section input, .form-section select {
+
+.form-section label,
+.form-section input,
+.form-section select {
   display: block;
   margin: 10px 0;
 }
+
 .footer {
   text-align: center;
 }
+
 .footer button {
   background-color: #333;
   color: white;
@@ -70,9 +86,11 @@ h1 {
   border-radius: 4px;
   cursor: pointer;
 }
+
 .footer button:hover {
   background-color: #555;
 }
+
 .results {
   margin-top: 20px;
 }
