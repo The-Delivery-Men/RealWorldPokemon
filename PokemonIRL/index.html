@@ -1,8 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tester</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real World Pokémon</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .menu {
+            display: flex;
+            justify-content: space-between;
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+        }
+        .menu button, .menu input {
+            background-color: #fff;
+            color: #333;
+            border: none;
+            padding: 5px 10px;
+            margin: 0 5px;
+            border-radius: 4px;
+        }
+        h1 {
+            text-align: center;
+            font-size: 3em;
+            color: #333;
+            margin-top: 20px;
+        }
+        .about-section, .form-section, .footer {
+            background-color: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .buttons button {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .buttons button:hover {
+            background-color: #555;
+        }
+        .form-section label, .form-section input, .form-section select {
+            display: block;
+            margin: 10px 0;
+        }
+        .footer {
+            text-align: center;
+        }
+        .footer button {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .footer button:hover {
+            background-color: #555;
+        }
+        .results {
+            margin-top: 20px;
+        }
+    </style>
 </head>
+<body>
+    <div class="menu">
+        <button id="menu-button">Menu</button>
+        <div>
+            <label for="search-pokemon" style="color: white;">Search Pokémon:</label>
+            <input type="text" id="search-pokemon">
+        </div>
+        <button id="info-button">Info</button>
+    </div>
+
+    <div class="container">
+        <h1>Real World Pokémon</h1>
+
+        <div class="about-section">
+            <h2>About section</h2>
+            <p>Immerse yourself in the world of Pokémon using the continent you inhabit to discover which Pokémon would populate your area.</p>
+        </div>
+
+        <div class="form-section">
+            <label for="continent">Select your continent:</label>
+            <select id="continent">
+                <option value="Africa">Africa</option>
+                <option value="Asia">Asia</option>
+                <option value="Europe">Europe</option>
+                <option value="North America">North America</option>
+                <option value="Oceania">Oceania</option>
+                <option value="South America">South America</option>
+            </select>
+            <button id="enter-button">Discover Pokémon</button>
+        </div> 
+
+        <div class="results" id="results"></div>
+
+        <div class="footer">
+            <button id="about-devs-button">About the Devs</button>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript to handle button clicks and form submissions can go here
+        document.getElementById('menu-button').addEventListener('click', () => {
+            alert('Menu button clicked');
+        });
+
+        document.getElementById('info-button').addEventListener('click', () => {
+            alert('Info button clicked');
+        });
+
+        document.getElementById('about-devs-button').addEventListener('click', () => {
+            alert('About the Devs button clicked');
+        });
+
+        // Mock dataset of Pokémon by continent
+        const pokemonData = {
+            "Africa": ["Sandile", "Torterra", "Hippopotas"],
+            "Asia": ["Pikachu", "Charmander", "Bulbasaur"],
+            "Europe": ["Rattata", "Eevee", "Snorlax"],
+            "North America": ["Squirtle", "Pidgey", "Jigglypuff"],
+            "Oceania": ["Lapras", "Gyarados", "Kangaskhan"],
+            "South America": ["Ludicolo", "Tropius", "Yanma"]
+        };
+
+        document.getElementById('enter-button').addEventListener('click', () => {
+            const continent = document.getElementById('continent').value;
+            const resultsDiv = document.getElementById('results');
+
+            if (pokemonData[continent]) {
+                resultsDiv.innerHTML = `<h2>Pokémon in ${continent}:</h2><ul>` + pokemonData[continent].map(pokemon => `<li>${pokemon}</li>`).join('') + `</ul>`;
+            } else {
+                resultsDiv.innerHTML = `<p>No Pokémon data available for ${continent}.</p>`;
+            }
+        });
+    </script>
+</body>
+</html>
+
 
 
 
@@ -74,3 +232,5 @@
 </body>
 
 </html>
+
+

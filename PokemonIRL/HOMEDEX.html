@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokedex</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .menu, .search, .buttons, .about-section, .form-section, .footer {
+            margin: 10px 0;
+        }
+        .menu {
+            display: flex;
+            justify-content: space-between;
+        }
+        .buttons {
+            display: flex;
+            flex-direction: column;
+        }
+        .buttons button {
+            margin: 5px 0;
+        }
+        .about-section, .form-section {
+            margin-top: 20px;
+        }
+        .form-section input {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <button id="menu-button">Menu</button>
+        <div>
+            <label for="search-pokemon">Search Pokemon:</label>
+            <input type="text" id="search-pokemon">
+        </div>
+        <button id="info-button">Info</button>
+    </div>
+
+    <h1>POKEDEX</h1>
+
+    <div class="about-section">
+        <h2>About section</h2>
+        <p>Describe the site</p>
+    </div>
+
+    <div class="buttons">
+        <button id="home-button">Home</button>
+        <button id="form-button">Form</button>
+        <button id="duel-button">Rock/Paper/Scissors Duel</button>
+    </div>
+
+    <div class="form-section">
+        <label for="region">Region/Continent:</label>
+        <input type="text" id="region">
+        <br>
+        <label for="weather">Weather:</label>
+        <input type="text" id="weather">
+        <br>
+        <button id="enter-button">Enter</button>
+    </div>
+
+    <div class="footer">
+        <button id="about-devs-button">About the Devs</button>
+    </div>
+
+    <script>
+        // JavaScript to handle button clicks and form submissions can go here
+    </script>
+</body>
+</html>
