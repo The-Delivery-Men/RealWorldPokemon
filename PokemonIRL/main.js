@@ -9,7 +9,18 @@ const fetchPokemonData = async (url, options = {}) => {
 
         const isJson = (response.headers.get('content-type') || '').includes('application/json')
         let data = isJson ? await response.json() : await response.text()
-        console.log(data)
+       // console.log(data)
+       const height = data.height
+       console.log(height)
+
+
+       let resultDiv = document.getElementsByClassName("results")[0];
+       let heightText = document.createElement("p");
+       
+       heightText.textContent = height; // Ensure 'height' is defined
+       
+       resultDiv.appendChild(heightText);
+       console.log(height)
         return [data, null];
     }
     catch (error) {
@@ -18,6 +29,8 @@ const fetchPokemonData = async (url, options = {}) => {
         return [null, error];
     }
 }
+
+
 
 
 // JavaScript to handle button clicks and form submissions can go here
