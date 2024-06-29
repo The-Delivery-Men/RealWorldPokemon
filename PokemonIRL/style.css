@@ -1,7 +1,6 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #959595;
-  color: #333333;
+  background-color: #ffff;
   margin: 0;
   padding: 0;
 }
@@ -20,7 +19,10 @@ body {
   padding: 10px 20px;
 }
 
-.menu button,
+button {
+  cursor: pointer;
+}
+
 .menu input {
   background-color: #949494;
   color: #333;
@@ -33,8 +35,83 @@ body {
 h1 {
   text-align: center;
   font-size: 3em;
-  color: #333;
+  color: #C5283D;
   margin-top: 20px;
+  text-shadow: 1px 3px #033B60;
+}
+
+h2 {
+  text-align: center;
+  margin: 20px;
+  padding: 10px 10px 10px 10px;
+  font-size: 28px;
+  color: #C5283D;
+  text-shadow: 2px 2px #481D24;
+
+}
+
+ul {
+  display: flex;
+  justify-content: space-around;
+  list-style-type: none;
+}
+
+li {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.types {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+
+
+.type-button {
+  border-radius: 8px;
+  border: none;
+  padding: 7px 7px 7px 7px;
+  margin: 3px;
+  cursor: default;
+}
+
+.pokemon-container {
+  color: #481D24;
+  font-size: 25px;
+  text-align: center;
+}
+
+
+.pokemon-container:hover {
+  cursor: pointer;
+  color: #E9724C;
+}
+
+.info-button {
+  border-color: #033B60;
+  font-size: 15px;
+  padding: 10px;
+}
+
+img {
+  width: 200px;
+  height: 200px;
+}
+
+#pokemon-more-info {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
 }
 
 .about-section,

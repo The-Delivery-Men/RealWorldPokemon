@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Real World Pokémon</title>
-  <script defer src="main.js"></script>
+  <script type="module" src="./main.js"></script>
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -20,7 +20,7 @@
   </div>
 
   <div class="container">
-    <h1>Real World Pokémon</h1>
+    <h1 aria-labelledby="title-real-world-pokemon">Real World Pokémon</h1>
 
     <div class="about-section">
       <h2>About section</h2>
@@ -35,8 +35,10 @@
         <option value="Asia">Asia</option>
         <option value="Europe">Europe</option>
         <option value="North America">North America</option>
-        <option value="Oceania">Oceania</option>
         <option value="South America">South America</option>
+        <option value="Australia">Australia</option>
+        <option value="Oceania">Oceania</option>
+        <option value="Antarctica">Antarctica</option>
       </select>
       <button id="enter-button">Discover Pokémon</button>
     </div>
