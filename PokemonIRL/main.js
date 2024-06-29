@@ -13,7 +13,18 @@ const fetchPokemonData = async (url, options = {}) => {
         }
         const isJson = (response.headers.get('content-type') || '').includes('application/json')
         let data = isJson ? await response.json() : await response.text()
-        console.log(data)
+       // console.log(data)
+       const height = data.height
+       console.log(height)
+
+
+       let resultDiv = document.getElementsByClassName("results")[0];
+       let heightText = document.createElement("p");
+       
+       heightText.textContent = height; // Ensure 'height' is defined
+       
+       resultDiv.appendChild(heightText);
+       console.log(height)
         return [data, null];
     }
     catch (error) {
@@ -25,18 +36,22 @@ const fetchPokemonData = async (url, options = {}) => {
 
 //------------------------------------------------------------------------------------------------------------------------------------------------
 
+
+// JavaScript to handle button clicks and form submissions can go here
+
 // Event listeners for the menu, info, and about the devs button ------------------------------------------------------------------------------------
-document.getElementById('menu-button').addEventListener('click', () => {
-    alert('Menu button clicked');
-});
 
-document.getElementById('info-button').addEventListener('click', () => {
-    alert('Info button clicked');
-});
+//document.getElementById('menu-button').addEventListener('click', () => {
+ //   alert('Menu button clicked');
+//});
 
-document.getElementById('about-devs-button').addEventListener('click', () => {
-    alert('About the Devs button clicked');
-});
+//document.getElementById('info-button').addEventListener('click', () => {
+ //   alert('Info button clicked');
+//});
+
+//document.getElementById('about-devs-button').addEventListener('click', () => {
+ //   alert('About the Devs button clicked');
+//});
 
 //-----------------------------------------------------------------------------------------------------------------------------------
 
@@ -107,7 +122,7 @@ document.getElementById('enter-button').addEventListener('click', async () => {
             pokemonSprite.setAttribute("id", `${pokemon}-sprite`);
             pokemonSprite.setAttribute("src", `${pokeSpriteData}`);
             pokemonSprite.setAttribute('class', 'poke-image')
-            pokemonSprite.setAttribute('alt', `${pokemon} Default look!`)
+            pokemonSprite.setAttribute('alt', `${pokemon}-default-look!`)
 
             document.querySelector(`#${pokemon}-container`).appendChild(pokemonSprite)
 
@@ -256,7 +271,7 @@ document.getElementById('enter-button').addEventListener('click', async () => {
         // });
         // });
     } else {
-        resultsDiv.innerHTML = `<p> No Pokémon data available for ${continent}. </p> `;
+        resultsDiv.innerHTML = `<p> No Pokémon data available for ${continent.trim()}. </p> `;
     }
 });
 
