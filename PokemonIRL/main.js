@@ -13,18 +13,18 @@ const fetchPokemonData = async (url, options = {}) => {
         }
         const isJson = (response.headers.get('content-type') || '').includes('application/json')
         let data = isJson ? await response.json() : await response.text()
-       // console.log(data)
-       const height = data.height
-       console.log(height)
+        // console.log(data)
+        // const height = data.height
+        // console.log(height)
 
 
-       let resultDiv = document.getElementsByClassName("results")[0];
-       let heightText = document.createElement("p");
-       
-       heightText.textContent = height; // Ensure 'height' is defined
-       
-       resultDiv.appendChild(heightText);
-       console.log(height)
+        // let resultDiv = document.getElementsByClassName("results")[0];
+        // let heightText = document.createElement("p");
+
+        // heightText.textContent = height; // Ensure 'height' is defined
+
+        // resultDiv.appendChild(heightText);
+        // console.log(height)
         return [data, null];
     }
     catch (error) {
@@ -42,15 +42,15 @@ const fetchPokemonData = async (url, options = {}) => {
 // Event listeners for the menu, info, and about the devs button ------------------------------------------------------------------------------------
 
 //document.getElementById('menu-button').addEventListener('click', () => {
- //   alert('Menu button clicked');
+//   alert('Menu button clicked');
 //});
 
 //document.getElementById('info-button').addEventListener('click', () => {
- //   alert('Info button clicked');
+//   alert('Info button clicked');
 //});
 
 //document.getElementById('about-devs-button').addEventListener('click', () => {
- //   alert('About the Devs button clicked');
+//   alert('About the Devs button clicked');
 //});
 
 //-----------------------------------------------------------------------------------------------------------------------------------
@@ -76,9 +76,11 @@ document.getElementById('enter-button').addEventListener('click', async () => {
     console.log(pokemonInRegionData[continent])
     const resultsDiv = document.getElementById('results');
 
+    resultsDiv.innerHTML = '';
 
-    resultsDiv.innerHTML = `<h2 aria-label="search-result-header" id="searchResultHeader">Pokémon in ${continent}:</h2><ul></ul>`
+    resultsDiv.innerHTML = `<h2 aria-label="form-result-header" id="formResultHeader">Pokémon in ${continent}:</h2><ul></ul>`
 
+    resultsDiv.scrollIntoView(true, { behavior: "smooth", block: "end", inline: "end" });
 
     if (pokemonInRegionData[continent]) {
 
@@ -219,55 +221,6 @@ document.getElementById('enter-button').addEventListener('click', async () => {
 
 
 
-
-
-
-        // const listedPokemons = document.querySelectorAll("#pokemon-container")
-
-        // console.log(listedPokemons)
-        // listedPokemons.forEach(async pokemonElement => {
-
-
-        //     //trimming to take out whitespaces
-        //     // console.log(pokemonElement)
-        //     //Must do this for every
-        //     //Getting the element that holds the pokemon name, getting the text content so it's just the name, making it all lowercase so it matches the name of the pokemon in the api database, trimming it so there's no whitespace (because the whitespace counts as a character)
-        //     const pokemonName = document.querySelector("#pokemon-name").textContent.toLowerCase().trim();
-        //     // console.log(pokemonName)
-        //     //
-        //     const pokemonGenInfoUrl = `https://pokeapi.co/api/v2/pokemon/${pokemonName}`;
-        //     console.log(pokemonGenInfoUrl)
-
-        //     //calling that fetch using a url
-        //     const pokemonInfo = await fetchPokemonData(pokemonGenInfoUrl)
-        //     console.log(pokemonInfo)
-
-
-        //     const pokeSpriteData = await pokemonInfo[0].sprites.front_default;
-        //     console.log(pokeSpriteData)
-
-        //     const pokemonSprite = document.createElement(`img`);
-
-        //     pokemonSprite.setAttribute("id", "poke-sprite")
-        //     pokemonSprite.setAttribute("src", `${pokeSpriteData}`)
-
-        //     document.querySelector('#pokemon-container').appendChild(pokemonSprite);
-        //     document.querySelector('#pokemon-container').insertBefore('#pokemon-name')
-
-
-        //     if (pokeSpriteData) {
-        //         pokemonSprite.setAttribute("src", pokeSpriteData);
-        //     }
-
-
-
-
-        //when you click on the pokemon 
-        // pokemonElement.addEventListener('click', async () => {
-
-
-
-
         // });
         // });
     } else {
@@ -276,36 +229,140 @@ document.getElementById('enter-button').addEventListener('click', async () => {
 });
 
 
-// fetch function for Pokemon search bar
-document.getElementById('search-button').addEventListener('click', fetchPokemonData);
 
-async function fetchPokemonData() {
-  const pokemonName = document.getElementById('pokemon-search').value.toLowerCase();
-  const apiUrl = `https://pokeapi.co/api/v2/pokemon/${pokemonName}`;
 
-  try {
-    const response = await fetch(apiUrl);
-    if (!response.ok) {
-      throw new Error('Pokémon not found');
+// fetch function for Pokemon search bar - -----------
+document.getElementById('search-button').addEventListener('click', fetchPokemonSearchData);
+
+async function fetchPokemonSearchData() {
+    const pokemonName = document.querySelector("#search-pokemon-input").value.toLowerCase().trim();
+    const apiUrl = `https://pokeapi.co/api/v2/pokemon/${pokemonName}`;
+
+    try {
+        const response = await fetch(apiUrl);
+        if (!response.ok) {
+            throw new Error('Pokémon not found');
+        }
+        const data = await response.json();
+        displayPokemonData(data);
+    } catch (error) {
+        console.error('Error fetching Pokémon data:', error);
+        document.getElementById('search-results').innerHTML = `<p>${error.message}</p>`;
     }
-    const data = await response.json();
-    displayPokemonData(data);
-  } catch (error) {
-    console.error('Error fetching Pokémon data:', error);
-    document.getElementById('search-results').innerHTML = `<p>${error.message}</p>`;
-  }
 }
 
-function displayPokemonData(data) {
-  const pokemonHTML = `
-    <h2>${data.name.charAt(0).toUpperCase() + data.name.slice(1)}</h2>
-    <img src="${data.sprites.front_default}" alt="${data.name}">
-    <p>Height: ${data.height}</p>
-    <p>Weight: ${data.weight}</p>
-    <p>Type: ${data.types.map(type => type.type.name).join(', ')}</p>
-  `;
-  document.getElementById('search-results').innerHTML = pokemonHTML;
+async function displayPokemonData(data) {
+    //clear the container before rendering another pokemon
+
+    //container
+    const searchResultSection = document.querySelector(`#results`);
+
+    searchResultSection.innerHTML = '';
+
+
+    const searchContainer = document.createElement('section');
+    searchContainer.setAttribute('id', `${data.name}-search-container`);
+    searchContainer.setAttribute('class', `pokemon-search-container`)
+
+    searchResultSection.appendChild(searchContainer)
+
+
+    //getting the sprites ----------------------------------------------------------------------------------------------------
+    const pokeSpriteData = await data.sprites.front_default;
+    console.log(pokeSpriteData);
+    //creating the image element
+    const pokemonSprite = document.createElement(`img`);
+    //setting the attribute up to have an id and the source be the url fetched in the pokeSpriteData promise
+    pokemonSprite.setAttribute("id", `${data.name}-search-sprite`);
+    pokemonSprite.setAttribute("src", `${pokeSpriteData}`);
+    pokemonSprite.setAttribute('class', 'poke-image')
+    pokemonSprite.setAttribute('alt', `${data.name}-default-look!`)
+
+    searchContainer.appendChild(pokemonSprite)
+
+
+
+    // console.log(data)
+    // console.log(data.name)
+    // console.log(data.types.length)
+
+    //type section creation ---------------------------------------------------------------------------------------------
+    const typeSection = document.createElement('section');
+    typeSection.setAttribute('id', `${data.name}-types-search`);
+    typeSection.setAttribute('class', 'types');
+
+    searchContainer.appendChild(typeSection)
+
+    if (data.types.length === 2) {
+        //type 1 button ---------------------------------------------------------------------------------------------------
+        const typeButton1 = document.createElement('button')
+        typeButton1.setAttribute('class', 'type-button');
+        typeButton1.setAttribute('id', `${data.name}-type1`)
+
+        //getting the type information from the array
+        const pokeTypeData1 = await data.types[0].type.name
+        // console.log(pokeTypeData)
+
+        typeButton1.textContent = pokeTypeData1.toUpperCase();
+
+        //type 2 button ---------------------------------------------------------------------------------------------------
+        const typeButton2 = document.createElement('button')
+        typeButton2.setAttribute('class', 'type-button');
+        typeButton2.setAttribute('id', `${data.name}-type2`)
+
+        //getting the type information from the array
+        const pokeTypeData2 = await data.types[1].type.name
+        // console.log(pokeTypeData)
+
+        typeButton2.textContent = pokeTypeData2.toUpperCase();
+
+        document.querySelector(`#${data.name}-types-search`).appendChild(await typeButton1)
+        document.querySelector(`#${data.name}-types-search`).appendChild(await typeButton2)
+
+
+
+    } else if (data.types.length === 1) {
+        const pokeTypeData1 = await data.types[0].type.name
+        console.log(pokeTypeData1)
+
+        const typeButton1 = document.createElement('button')
+        typeButton1.setAttribute('class', 'type-button');
+        typeButton1.setAttribute('id', `${data.name}-type1`)
+        typeButton1.textContent = pokeTypeData1.toUpperCase();
+
+        console.log(typeButton1)
+
+
+        document.querySelector(`#${data.name}-types-search`).appendChild(await typeButton1)
+
+    }
+    //name 
+
+    const pokemonSearchNameData = data.name.charAt(0).toUpperCase() + data.name.slice(1);
+    //name element creation
+    const pokemonSearchName = document.createElement("h3");
+    pokemonSearchName.setAttribute("id", "pokemon-name");
+    pokemonSearchName.setAttribute('class', 'listed-pokemon');
+    pokemonSearchName.textContent = pokemonSearchNameData
+
+    searchContainer.appendChild(await pokemonSearchName)
+    console.log(pokemonSearchName)
+
+
+    //creating a 'more information' button ----------------------------------------------------------------------------------------------------------------------------------------
+    const searchInfoButton = document.createElement('button');
+    searchInfoButton.setAttribute('id', `${data.name}-search-info-button`);
+    searchInfoButton.setAttribute('class', 'info-button')
+    searchInfoButton.textContent = `Learn More About ${data.name.charAt(0).toUpperCase() + data.name.slice(1)}!`
+
+    searchContainer.appendChild(searchInfoButton)
+
 }
+
+
+
+//Modal pop-up 
+
 
 
 

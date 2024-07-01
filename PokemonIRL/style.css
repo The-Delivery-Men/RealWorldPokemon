@@ -1,4 +1,5 @@
 body {
+  scroll-behavior: smooth;
   font-family: Arial, sans-serif;
   background-color: #ffff;
   margin: 0;
@@ -12,11 +13,21 @@ body {
 }
 
 .menu {
+  overflow: hidden;
+  position: sticky;
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   background-color: #333;
   color: rgb(112, 112, 112);
   padding: 10px 20px;
+}
+
+#search-bar-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
 }
 
 button {
@@ -27,7 +38,7 @@ button {
   background-color: #949494;
   color: #333;
   border: none;
-  padding: 5px 10px;
+  padding: 5px 5px;
   margin: 0 5px;
   border-radius: 4px;
 }
@@ -42,12 +53,23 @@ h1 {
 
 h2 {
   text-align: center;
-  margin: 20px;
-  padding: 10px 10px 10px 10px;
+  margin: 10px;
+  padding: 10px;
   font-size: 28px;
   color: #C5283D;
   text-shadow: 2px 2px #481D24;
 
+}
+
+#about-body {
+  font-size: 23px;
+  text-align: center;
+  margin: 20px;
+  margin-left: 30px;
+  margin-right: 30px;
+  padding: 50px;
+  letter-spacing: 1.2px;
+  line-height: 30px;
 }
 
 ul {
@@ -68,6 +90,56 @@ section {
   justify-content: center;
 }
 
+#form-and-search {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  justify-content: space-around;
+  margin: 20px;
+  padding: 10px;
+}
+
+.form-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+
+h5 {
+  display: flex;
+  justify-content: center;
+  font-size: 15px;
+}
+
+#search-bar-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  padding: 10px;
+}
+
+#search-pokemon {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+#search-pokemon-input {
+  margin: 10px;
+  padding: 10px;
+}
+
+#search-button {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+
+
+}
+
 .types {
   display: flex;
   flex-direction: row;
@@ -82,6 +154,19 @@ section {
   padding: 7px 7px 7px 7px;
   margin: 3px;
   cursor: default;
+}
+
+.pokemon-search-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.poke-image {
+  display: flex;
+  justify-content: center;
 }
 
 .pokemon-container {
@@ -114,14 +199,21 @@ img {
   text-align: center;
 }
 
-.about-section,
+/* .about-section,
 .form-section,
+.search-bar-section,
 .footer {
   background-color: rgb(110, 110, 110);
   padding: 20px;
   margin: 20px 0;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+} */
+
+
+.results {
+  margin: 20px;
+  padding: 10px;
 }
 
 .buttons {
@@ -152,7 +244,12 @@ img {
 }
 
 .footer {
+  display: flex;
+  justify-content: center;
   text-align: center;
+  margin: 20px;
+  padding: 10px;
+
 }
 
 .footer button {

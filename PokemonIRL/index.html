@@ -10,45 +10,55 @@
 </head>
 
 <body>
-  <div class="menu">
-    <button id="menu-button">Menu</button>
-    <div>
-      <label for="search-pokemon" style="color: white;">Search Pokémon:</label>
-      <input type="text" id="search-pokemon">
-    </div>
-    <button id="info-button">Info</button>
-  </div>
 
-  <div class="container">
+  <section class="header bar">
+  </section>
+
+
+  <section class="container">
     <h1 aria-labelledby="title-real-world-pokemon">Real World Pokémon</h1>
 
-    <div class="about-section">
-      <h2>About section</h2>
-      <p>Immerse yourself in the world of Pokémon using the continent you inhabit to discover which Pokémon would
-        populate your area.</p>
-    </div>
+    <section class="about-section">
+      <h2 aria-label="about-section-header" id="about-section-header">About section</h2>
+      <p id="about-body">Immerse yourself in the world of Pokémon using the continent you inhabit to discover which
+        Pokémon would
+        populate your area. You can either look at the Pokémon that would populate a certain continent by using the
+        selection menu below on the left, or search up Pokémon you like using the search bar below on the right. </p>
+    </section>
 
-    <div class="form-section">
-      <label for="continent">Select your continent:</label>
-      <select id="continent">
-        <option value="Africa">Africa</option>
-        <option value="Asia">Asia</option>
-        <option value="Europe">Europe</option>
-        <option value="North America">North America</option>
-        <option value="South America">South America</option>
-        <option value="Australia">Australia</option>
-        <option value="Oceania">Oceania</option>
-        <option value="Antarctica">Antarctica</option>
-      </select>
-      <button id="enter-button">Discover Pokémon</button>
-    </div>
+    <section id="form-and-search">
+      <!-- form -->
+      <section class="form-section">
+        <h5 id="continent-selector-header" aria-label="continent-select">Select your continent:</h5>
+        <select id="continent">
+          <option value="Africa">Africa</option>
+          <option value="Asia">Asia</option>
+          <option value="Europe">Europe</option>
+          <option value="North America">North America</option>
+          <option value="South America">South America</option>
+          <option value="Australia">Australia</option>
+          <option value="Oceania">Oceania</option>
+          <option value="Antarctica">Antarctica</option>
+        </select>
+        <button id="enter-button">Discover Pokémon</button>
+      </section>
 
-    <div class="results" id="results"></div>
 
-    <div class="footer">
-      <button id="about-devs-button">About the Devs</button>
-    </div>
-  </div>
+
+      <section id="search-bar-section" class="search-bar-section">
+        <h5 id="search-pokemon" aria-label="search-bar-pokemon">Search Pokémon: </h5>
+        <input type="text" id="search-pokemon-input">
+        <button type="submit" id="search-button">Search</button>
+      </section>
+
+    </section>
+    <section class="results" id="results"></section>
+
+  </section>
+
+  <footer class="footer">
+    <button id="about-devs-button">About the Devs</button>
+  </footer>
 </body>
 
 </html>
