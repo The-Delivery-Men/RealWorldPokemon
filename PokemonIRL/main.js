@@ -100,6 +100,39 @@ document.getElementById('enter-button').addEventListener('click', () => {
 });
 
 
+// fetch function for Pokemon search bar
+document.getElementById('search-button').addEventListener('click', fetchPokemonData);
+
+async function fetchPokemonData() {
+  const pokemonName = document.getElementById('pokemon-search').value.toLowerCase();
+  const apiUrl = `https://pokeapi.co/api/v2/pokemon/${pokemonName}`;
+
+  try {
+    const response = await fetch(apiUrl);
+    if (!response.ok) {
+      throw new Error('Pokémon not found');
+    }
+    const data = await response.json();
+    displayPokemonData(data);
+  } catch (error) {
+    console.error('Error fetching Pokémon data:', error);
+    document.getElementById('search-results').innerHTML = `<p>${error.message}</p>`;
+  }
+}
+
+function displayPokemonData(data) {
+  const pokemonHTML = `
+    <h2>${data.name.charAt(0).toUpperCase() + data.name.slice(1)}</h2>
+    <img src="${data.sprites.front_default}" alt="${data.name}">
+    <p>Height: ${data.height}</p>
+    <p>Weight: ${data.weight}</p>
+    <p>Type: ${data.types.map(type => type.type.name).join(', ')}</p>
+  `;
+  document.getElementById('search-results').innerHTML = pokemonHTML;
+}
+
+
+
 
 
 
